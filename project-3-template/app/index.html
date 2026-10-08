@@ -20,7 +20,7 @@
 
     <main id="main-content" tabindex="-1">
       <section class="screen" data-route="home" aria-labelledby="home-title">
-        <h1 id="home-title" class="visually-hidden">Today's outfit forecast</h1>
+        <h1 id="home-title" class="visually-hidden" tabindex="-1">Today's outfit forecast</h1>
 
         <section class="location-panel" aria-labelledby="location-title">
           <div class="location-intro">
@@ -142,21 +142,75 @@
       <section class="screen reading-page" data-route="about" aria-labelledby="about-title" hidden>
         <a class="back-link" href="#/">← Back to forecast</a>
         <p class="eyebrow">About the project</p>
-        <h1 id="about-title">About Cloud Closet</h1>
+        <h1 id="about-title" tabindex="-1">About Cloud Closet</h1>
         <p class="lede">Cloud Closet turns a live weather forecast into clothing guidance for a day away from home.</p>
 
         <section aria-labelledby="method-title">
           <h2 id="method-title">How recommendations work</h2>
-          <p>The final recommendation method and temperature bands will be added as the forecast and recommendation systems are implemented.</p>
+          <p>Cloud Closet looks at the 13 hourly forecasts from 8:00 a.m. through 8:00 p.m. in the selected location’s local time. It uses apparent temperature when available and falls back to air temperature for an isolated missing value. The median of the usable temperatures sets the main clothing category.</p>
+          <div class="table-wrap" tabindex="0" role="region" aria-label="Temperature bands, horizontally scrollable">
+            <table>
+              <caption>Temperature bands used for clothing recommendations</caption>
+              <thead>
+                <tr><th scope="col">Category</th><th scope="col">Median temperature</th><th scope="col">Clothing direction</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Hot</th><td>85°F and above</td><td>Lightweight clothing and minimal layers</td></tr>
+                <tr><th scope="row">Warm</th><td>75°F to below 85°F</td><td>Short sleeves and breathable clothing</td></tr>
+                <tr><th scope="row">Temperate</th><td>65°F to below 75°F</td><td>Light clothing with an optional layer</td></tr>
+                <tr><th scope="row">Cool</th><td>50°F to below 65°F</td><td>Long sleeves and a jacket</td></tr>
+                <tr><th scope="row">Cold</th><td>Above 32°F to below 50°F</td><td>Warmer layers and outerwear</td></tr>
+                <tr><th scope="row">Freezing</th><td>32°F and below</td><td>Heavier outerwear, a hat, and gloves</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>If another temperature category lasts for at least two consecutive hours, the app adds timed layering guidance without changing the main outfit. Fewer than seven usable hours produces a <strong>Limited forecast data</strong> label.</p>
         </section>
+
+        <section aria-labelledby="reminders-title">
+          <h2 id="reminders-title">Reminders and limitations</h2>
+          <p>Bring reminders are checked independently of the main temperature category:</p>
+          <ul>
+            <li><strong>Rain protection:</strong> precipitation probability reaches 40%, or measurable precipitation is forecast when probability is unavailable.</li>
+            <li><strong>Wet-weather footwear:</strong> total precipitation reaches 0.10 inches, or freezing rain, sleet, or snow is forecast.</li>
+            <li><strong>Hydration:</strong> apparent temperature reaches 80°F.</li>
+            <li><strong>Sun protection:</strong> UV index reaches 3.</li>
+            <li><strong>Wind preparation:</strong> sustained wind reaches 25 mph or gusts reach 30 mph.</li>
+          </ul>
+          <p>Thunderstorms, freezing precipitation, snow, strong wind, and qualifying rain can also produce a forecast-based weather notice. In thunderstorms or strong wind, the app replaces ordinary umbrella advice with broader rain-protection or shelter language.</p>
+          <p>These temperature bands and reminder triggers are product rules, not personalized medical advice or official safety thresholds. Clothing needs vary by activity, health, exposure, and personal comfort. Cloud Closet’s notices are derived from forecast data and are <strong>not official watches, warnings, advisories, or emergency alerts</strong>. Check <a href="https://www.weather.gov/" rel="external">weather.gov</a> and local authorities for official safety information.</p>
+        </section>
+
+        <section aria-labelledby="data-title">
+          <h2 id="data-title">Weather and location data</h2>
+          <p>Forecast data is provided by <a href="https://open-meteo.com/" rel="external">Open-Meteo</a> under <a href="https://creativecommons.org/licenses/by/4.0/" rel="license external">CC BY 4.0</a>. Open-Meteo combines numerical weather models; values are modeled estimates rather than guaranteed measurements from a nearby station. The free API has no uptime guarantee and is limited to non-commercial use. Commercial or promotional reuse requires reevaluating the <a href="https://open-meteo.com/en/terms" rel="external">Open-Meteo terms</a> and service plan.</p>
+          <p>City and ZIP lookup data comes from the US Census Bureau’s <a href="https://www.census.gov/geographies/reference-files/time-series/geo/gazetteer-files.html" rel="external">2026 Gazetteer Files</a> and the <a href="https://www.census.gov/programs-surveys/geography/guidance/geo-areas/zctas.html" rel="external">2020 ZCTA relationship files</a>. Coordinates are representative geographic points suitable for an area forecast, not street locations. Census places do not include every locally used community name, and ZIP Code Tabulation Areas approximate USPS delivery areas, so some PO-box-only and organization-specific ZIP codes are unavailable. A ZIP label’s city is the Census place with the largest land-area overlap, not a guaranteed USPS preferred mailing city.</p>
+        </section>
+
         <section aria-labelledby="privacy-title">
           <h2 id="privacy-title">Privacy and data</h2>
-          <p>Manual city and ZIP searches use location files stored with this app. Device location is requested only after you choose <strong>Use my location</strong>. After a location is selected, its representative coordinates are sent to Open-Meteo for a fresh forecast. Cloud Closet stores only your latest selected location on this device; search text, weather responses, and device-location history are not saved.</p>
+          <p>Manual city and ZIP searches use files stored with this app, so typed search text is not sent to a geocoding service. Device location is requested only after you choose <strong>Use my location</strong> and your browser asks permission.</p>
+          <p>After a location is selected, its coordinates are sent directly from your browser to Open-Meteo for a fresh forecast. Open-Meteo states that troubleshooting logs may contain IP addresses and geographic coordinates and are deleted after 90 days; review its <a href="https://open-meteo.com/en/terms" rel="external">privacy terms</a> for details.</p>
+          <p>Cloud Closet stores only the latest selected location—its label and representative coordinates—in this browser’s local storage. Search text, weather responses, device-location history, style, occasion, and outfit choices are not saved. You can remove the saved location by clearing this site’s browser data.</p>
         </section>
+
         <section aria-labelledby="credits-title">
           <h2 id="credits-title">Sources and credits</h2>
-          <p>Created by Ella Gault. Forecast data is provided by <a href="https://open-meteo.com/" rel="external">Open-Meteo</a>. Location data comes from the US Census Bureau.</p>
-          <p>Character, clothing, accessory, weather, and reminder artwork was generated with ChatGPT under Ella Gault’s direction. Ella edited selected pieces and reviewed the complete SVG set for the final application. No third-party artwork is used.</p>
+          <p>Cloud Closet was created and directed by <strong>Ella Gault</strong> as part of a class project. ChatGPT assisted with research synthesis, planning, writing, software development, testing, and SVG generation. Ella made and approved the project decisions, directed the visual work, edited selected pieces, and reviewed the application and complete asset set.</p>
+          <p>All character, clothing, accessory, weather, and reminder artwork was created specifically for Cloud Closet with ChatGPT under Ella’s direction. No third-party artwork is used, so no additional artwork license applies.</p>
+        </section>
+
+        <section aria-labelledby="evidence-title">
+          <h2 id="evidence-title">Evidence and additional resources</h2>
+          <ul>
+            <li><a href="https://www.weather.gov/ffc/pop" rel="external">National Weather Service: probability of precipitation</a></li>
+            <li><a href="https://www.weather.gov/safety/heat-during" rel="external">National Weather Service: heat safety</a></li>
+            <li><a href="https://www.cdc.gov/heat-health/risk-factors/heat-and-athletes.html" rel="external">CDC: heat and physical activity</a></li>
+            <li><a href="https://www.osha.gov/heat-exposure/hazards" rel="external">OSHA: heat exposure factors</a></li>
+            <li><a href="https://www.epa.gov/sunsafety/uv-index-scale-0" rel="external">EPA: UV Index scale</a></li>
+            <li><a href="https://www.weather.gov/tbw/beaufort" rel="external">National Weather Service: Beaufort wind scale</a></li>
+            <li><a href="https://www.w3.org/WAI/WCAG22/quickref/" rel="external">W3C: WCAG 2.2 reference</a></li>
+          </ul>
         </section>
       </section>
     </main>

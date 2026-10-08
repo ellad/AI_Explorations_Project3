@@ -8,6 +8,7 @@
   --color-accent-dark: #7b290c;
   --color-soft: #f5dfc8;
   --color-line: #d8cbbd;
+  --color-control: #766e68;
   --color-focus: #075e91;
   --shadow-card: 0 0.45rem 1.5rem rgb(56 39 25 / 10%);
   --radius-small: 0.75rem;
@@ -30,6 +31,7 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
+  font-weight: 500;
   line-height: 1.5;
 }
 
@@ -154,7 +156,7 @@ h2 {
   appearance: none;
   min-width: 8.5rem;
   padding: 0.85rem;
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--color-control);
   border-radius: var(--radius-small);
   background: var(--color-paper);
   color: var(--color-ink);
@@ -446,10 +448,12 @@ h2 {
   background: var(--color-accent);
   color: white;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .button:disabled {
-  background: #8b837d;
+  background: #6f6863;
+  cursor: not-allowed;
 }
 
 .section-heading {
@@ -531,8 +535,8 @@ h2 {
 }
 
 .outfit-arrow:disabled {
-  border-color: var(--color-line);
-  color: #8b837d;
+  border-color: var(--color-control);
+  color: #6f6863;
   cursor: not-allowed;
 }
 
@@ -552,7 +556,7 @@ h2 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   overflow: hidden;
-  border: 1px solid var(--color-line);
+  border: 1px solid var(--color-control);
   border-radius: var(--radius-small);
 }
 
@@ -561,7 +565,7 @@ h2 {
   min-height: 2.75rem;
   padding: 0.5rem;
   place-items: center;
-  border-right: 1px solid var(--color-line);
+  border-right: 1px solid var(--color-control);
   text-align: center;
 }
 
@@ -577,6 +581,13 @@ h2 {
 .segmented-control label:has(input:checked) {
   background: var(--color-soft);
   font-weight: 750;
+}
+
+.segmented-control label:has(input:focus-visible) {
+  position: relative;
+  z-index: 1;
+  outline: 0.2rem solid var(--color-focus);
+  outline-offset: -0.2rem;
 }
 
 .guidance-panel {
@@ -607,6 +618,43 @@ h2 {
 .reading-page section {
   padding-block: 1.5rem;
   border-top: 1px solid var(--color-line);
+}
+
+.reading-page li + li {
+  margin-top: 0.6rem;
+}
+
+.table-wrap {
+  margin-block: 1.25rem;
+  overflow-x: auto;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-small);
+}
+
+.reading-page table {
+  width: 100%;
+  min-width: 38rem;
+  border-collapse: collapse;
+  background: white;
+}
+
+.reading-page caption {
+  padding: 0.85rem 1rem;
+  background: var(--color-soft);
+  font-weight: 750;
+  text-align: left;
+}
+
+.reading-page th,
+.reading-page td {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--color-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.reading-page thead th {
+  background: var(--color-surface);
 }
 
 .back-link {

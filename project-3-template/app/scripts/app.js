@@ -75,13 +75,14 @@ function moveOutfit(direction) {
 document.querySelector("#previous-outfit").addEventListener("click", () => moveOutfit(-1));
 document.querySelector("#next-outfit").addEventListener("click", () => moveOutfit(1));
 
-function updateRoute() {
+function updateRoute({ moveFocus = false } = {}) {
   const route = renderRoute(routeFromHash(window.location.hash));
   const status = document.querySelector("#route-status");
   status.textContent = route === "about" ? "About Cloud Closet" : "Cloud Closet forecast";
+  if (moveFocus) document.querySelector(route === "about" ? "#about-title" : "#home-title").focus();
 }
 
-window.addEventListener("hashchange", updateRoute);
+window.addEventListener("hashchange", () => updateRoute({ moveFocus: true }));
 updateRoute();
 
 export { appState };
