@@ -191,6 +191,7 @@ Once the recommendation categories are chosen, estimate the art needed: the char
 
 Record new evidence or changed decisions and explain why they changed.
 
+- **October 5, 2026 — ZIP place labels:** added the Census Bureau's [2020 ZCTA-to-place relationship file](https://www2.census.gov/geo/docs/maps-data/data/rel2020/zcta520/tab20_zcta520_place20_natl.txt) to local data preparation after implementation review showed that ZIP-only labels were less understandable. Where a ZCTA intersects multiple named Census places, the app uses the place with the largest land-area overlap; this is geographic context, not a USPS preferred mailing-city claim. ZCTAs without a named-place intersection retain a ZIP-only label.
 - **September 30, 2026 — provider change:** replaced NWS with Open-Meteo after confirming the prototype's actual use is non-commercial. Open-Meteo supplies UV index alongside the seven-day hourly weather variables, allowing evidence-based sunscreen reminders without adding a second live provider or backend. The trade-off is that licensing must be revisited before any commercial or promotional reuse.
 
 ## Approval

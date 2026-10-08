@@ -37,7 +37,7 @@ The approved direction uses two primary screens. Location search is a control re
 
 The main screen header shows the Cloud Closet name and an information icon on the opposite side. The icon has the accessible name `About Cloud Closet`. The information screen provides a clearly labeled back control. Its content is not hidden in accordions.
 
-On both main-screen layouts, the content order is location search, seven-day forecast strip, character and outfit controls, written recommendation, weather notices, and reminders. Laptop composition uses two columns below the forecast strip. Phone composition becomes one vertical column, keeps the character near the top, and uses controls sized for one-handed operation.
+On both main-screen layouts, the content order is location search, seven-day forecast strip, character and outfit controls, Wear guidance, Bring reminders, and Weather notices. Laptop composition uses two columns below the forecast strip. Phone composition becomes one vertical column, keeps the character near the top, and uses controls sized for one-handed operation.
 
 ## Requirements
 
@@ -57,7 +57,7 @@ The location-search area appears above the seven-day forecast. It contains a sta
 
 On a first visit with no saved location, the app shows a location-first empty state and waits for the User to search or activate `Use my location`. It does not assume Austin, request device permission automatically, or fetch weather before a location is selected. The empty state briefly explains that a location is needed to create the forecast-based outfit.
 
-City searches lazy-load only the selected state's local Census place-data file. The suggestion list communicates loading, no matches, and load failure without blocking ZIP or device-location options. ZIP searches preserve leading zeros, load one local shard according to the ZIP's first digit, and require an exact match. If a ZIP is absent from Census ZCTA data, the interface explains the limitation and offers city/state search or device location.
+City searches lazy-load only the selected state's local Census place-data file. The suggestion list communicates loading, no matches, and load failure without blocking ZIP or device-location options. ZIP searches preserve leading zeros, load one local shard according to the ZIP's first digit, and require an exact match. When a ZCTA has one or more named-place intersections in the Census relationship file, its display label uses the place with the largest land-area overlap and includes the ZIP; this representative Census place is not presented as a guaranteed USPS preferred mailing city. A ZCTA without a named-place relationship retains a ZIP-only label. If a ZIP is absent from Census ZCTA data, the interface explains the limitation and offers city/state search or device location.
 
 Device location is requested only after the User activates `Use my location`. Permission denial, timeout, or unavailability leaves manual search operable. Only the most recently selected location is saved in `localStorage`; occasion, style, outfit choices, weather responses, and search text are not persisted. If storage is unavailable, the app continues for the current visit and explains only if the failure affects the User.
 
@@ -188,7 +188,7 @@ During the current page visit, returning to a previously viewed date restores it
 
 ## Assets
 
-All character, garment, weather, and reminder art will be original modular SVG created for Cloud Closet with AI assistance under the Developer's direction. The Developer's phone drawing guides a friendly editorial character with a simple expressive face, readable pose, and minimal detail that remains legible at small sizes. The core app uses one consistent base pose with interchangeable clothing and props; additional poses are a stretch goal only after core requirements pass. The Developer may create or revise selected custom assets where time permits. Reference artwork will not be copied. Shared alignment points and explicit SVG layer order prevent garments from overlapping incorrectly.
+All character, garment, weather, and reminder art is original modular SVG generated with ChatGPT under Ella Gault's direction. Ella edited selected pieces and reviewed the complete set for the final application. Her phone drawing guided a friendly editorial character with a simple expressive face, readable pose, and minimal detail that remains legible at small sizes. The core app uses one consistent base pose with interchangeable clothing and props. No third-party artwork is used. Shared alignment points and explicit SVG layer order prevent garments from overlapping incorrectly.
 
 Working inventory:
 
@@ -206,7 +206,7 @@ Working inventory:
 
 Total working estimate: approximately 58 unique SVG assets. Recoloring, including burnt orange and white Game day treatments, does not create separate assets. Each garment is tagged for compatible categories, occasions, style directions, layer position, and relevant conditions. The 108 outfit entries reference these reusable modules.
 
-AI-assisted output is a starting point rather than an automatic final asset: every asset must be reviewed for visual consistency, usable SVG structure, clean geometry, alignment with the shared character anchor points, correct layer order, and absence of copied trademarks or recognizable third-party artwork. Generated raster artwork may be used for concept exploration, but production character and garment assets must be converted into or recreated as editable SVG modules. The information screen will disclose that AI assisted asset concepting and/or creation under Ella Gault's direction, distinguish any assets drawn or substantially revised by her, and identify the tools actually used. Final assets must be free of unlicensed third-party material. The inventory and credits will be updated if implementation changes this estimate or workflow.
+ChatGPT-generated output was treated as a starting point rather than an automatic final asset. Ella reviewed the assets for visual consistency, usable SVG structure, clean geometry, alignment with the shared character anchor points, correct layer order, small-size legibility, and absence of copied trademarks or recognizable third-party artwork. She edited selected pieces before approving the complete 58-asset production inventory. The information screen discloses this workflow and does not attribute the Developer's decisions or review to AI.
 
 ## Out of scope
 
@@ -225,6 +225,8 @@ AI-assisted output is a starting point rather than an automatic final asset: eve
 
 After implementation or testing, record requirement changes and the evidence that prompted them. Update the screen drawings when a material layout or interaction changes.
 
+- **October 5, 2026 — guidance-order clarification:** corrected the screen-design summary to match the already approved `Wear`, `Bring`, and `Weather notices` order used throughout the requirements and implementation plan. This is a consistency correction, not a behavior change.
+- **October 5, 2026 — ZIP display labels:** after reviewing the implemented location flow, the Developer requested city context instead of a generic `ZIP code 78701` label. ZIP data generation now joins the official 2020 Census ZCTA-to-place relationship file and displays the named Census place with the largest land-area overlap, state, and ZIP when available. This remains a local lookup and is disclosed as representative Census geography rather than a USPS preferred-city guarantee.
 - **October 3, 2026 — screen and interaction decisions:** added the four hand drawings; selected Cloud Closet as the prototype name; defined the matching Style and Occasion segmented controls; defined three-versus-six outfit cycling; chose session-only memory with deterministic initialization; placed location search above the forecast with `Use my location` inside the same control region; and placed an accessible information icon opposite the app name. The Developer approved these decisions during specification discussion.
 - **October 3, 2026 — artwork workflow:** selected AI-assisted creation for the modular SVG character, garments, and icons because manually producing the full asset inventory is not feasible within the project schedule. The Developer's drawings direct the art style, and she may create or revise a smaller number of custom assets. All production assets remain subject to manual review, cleanup, compatibility checks, and accurate AI-use disclosure.
 - **October 3, 2026 — character pose scope:** selected one consistent modular base pose for the core app. Additional poses are deferred as a stretch goal so required outfit coverage and garment alignment take priority.
@@ -241,3 +243,4 @@ After implementation or testing, record requirement changes and the evidence tha
 ## Saving the transcript
 
 After the Developer approves the specification, ask them to enter `save transcript`. When directed, save the complete conversation as `transcripts/spec-YYYY-MM-DD_HHMMSS.md`, label chat messages `Developer` and `Agent`, and confirm the saved path.
+- **October 8, 2026 — completed SVG inventory and provenance:** completed and integrated the 58 planned production SVG assets. ChatGPT generated the artwork under Ella Gault's direction; Ella edited selected pieces and reviewed the full set. No third-party artwork is used.

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Weather-based outfit guidance for a day away from home.">
+    <title>Cloud Closet</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <script type="module" src="./scripts/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <a class="brand" href="#/" aria-label="Cloud Closet home">Cloud Closet</a>
+      <a class="icon-link" href="#/about" aria-label="About Cloud Closet">
+        <span aria-hidden="true">i</span>
+      </a>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <section class="screen" data-route="home" aria-labelledby="home-title">
+        <h1 id="home-title" class="visually-hidden">Today's outfit forecast</h1>
+
+        <section class="location-panel" aria-labelledby="location-title">
+          <div class="location-intro">
+            <p class="eyebrow">Your forecast</p>
+            <h2 id="location-title">Choose a location</h2>
+            <p>Pick a US city or ZIP code to create a weather-based outfit.</p>
+          </div>
+          <p class="selected-location" id="selected-location" hidden>
+            <span class="selected-location-label">Selected location</span>
+            <strong id="selected-location-name"></strong>
+          </p>
+
+          <form class="location-form" id="location-form" novalidate>
+            <div class="location-fields">
+              <label>
+                <span>State</span>
+                <select id="state" name="state">
+                  <option value="">Choose a state</option>
+                </select>
+              </label>
+              <label class="location-query-label">
+                <span>City or ZIP code</span>
+                <span class="combobox-wrap">
+                  <input id="location-query" name="location-query" type="text" inputmode="search" autocomplete="postal-code" role="combobox" aria-autocomplete="list" aria-controls="city-suggestions" aria-expanded="false" aria-activedescendant="" placeholder="Austin or 78701">
+                  <ul id="city-suggestions" class="suggestions" role="listbox" hidden></ul>
+                </span>
+              </label>
+            </div>
+            <div class="location-actions">
+              <button class="button" type="submit">Find location</button>
+              <button class="button button-secondary" id="use-device-location" type="button">Use my location</button>
+            </div>
+            <p class="field-help">Choose a state to search cities. A five-digit ZIP code does not require a state.</p>
+            <p class="location-status" id="location-status" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section aria-labelledby="forecast-title">
+          <div class="section-heading">
+            <h2 id="forecast-title">Seven-day forecast</h2>
+            <p>Forecast dates will appear after you choose a location.</p>
+          </div>
+          <div class="forecast-strip" aria-label="Forecast dates" tabindex="0">
+            <p class="empty-placeholder">No forecast yet</p>
+          </div>
+        </section>
+
+        <section class="hourly-section" aria-labelledby="hourly-title">
+          <div class="section-heading">
+            <h2 id="hourly-title">Hourly forecast</h2>
+            <p id="hourly-date">Choose a forecast date to see hourly conditions.</p>
+          </div>
+          <div class="hourly-strip" id="hourly-strip" aria-label="Hourly forecast" tabindex="0">
+            <p class="empty-placeholder">No hourly forecast yet</p>
+          </div>
+        </section>
+
+        <div class="recommendation-layout">
+          <section class="character-panel" aria-labelledby="outfit-title">
+            <h2 id="outfit-title">Outfit</h2>
+            <div class="character-artwork" id="outfit-illustration" role="img" aria-label="Character waiting for an outfit recommendation">
+              <svg viewBox="0 0 512 768" aria-hidden="true" focusable="false">
+                <image class="character-layer" data-layer="weather-prop" x="51.5" y="35.21" width="525" height="668.79" hidden></image>
+                <image class="character-layer" data-layer="base" href="./assets/longhorn-base-neutral-eyelashes.svg" x="0" y="0" width="512" height="768"></image>
+                <image class="character-layer" data-layer="bottom" x="86.5" y="35.21" width="345.78" height="668.79" hidden></image>
+                <image class="character-layer" data-layer="top" x="86.5" y="35.21" width="345.78" height="668.79" hidden></image>
+                <image class="character-layer" data-layer="dress" x="86.5" y="35.21" width="345.78" height="668.79" hidden></image>
+                <image class="character-layer" data-layer="outerwear" x="86.5" y="35.21" width="345.78" height="668.79" hidden></image>
+                <image class="character-layer" data-layer="footwear" x="86.5" y="35.21" width="345.78" height="668.79" hidden></image>
+                <image class="character-layer" data-layer="neck-accessory" x="86.5" y="35.21" width="345.78" height="668.79" hidden></image>
+                <use class="character-layer" data-layer="head" href="./assets/dress-pants-preview.svg#head" transform="translate(86.5 35.21)"></use>
+                <image class="character-layer" data-layer="accessory" x="86.5" y="35.21" width="345.78" height="668.79" hidden></image>
+                <image class="character-layer" data-layer="accessory" x="86.5" y="35.21" width="345.78" height="668.79" hidden></image>
+              </svg>
+            </div>
+
+            <div class="outfit-picker" aria-label="Outfit variation">
+              <button class="outfit-arrow" id="previous-outfit" type="button" aria-label="Show previous outfit" disabled>←</button>
+              <p class="outfit-description" id="outfit-description">Choose a location to see an outfit.</p>
+              <button class="outfit-arrow" id="next-outfit" type="button" aria-label="Show next outfit" disabled>→</button>
+            </div>
+
+            <fieldset class="preference-group" id="style-preferences" disabled>
+              <legend>Style</legend>
+              <div class="segmented-control">
+                <label><input type="radio" name="style" value="masculine"> Masculine</label>
+                <label><input type="radio" name="style" value="none" checked> No preference</label>
+                <label><input type="radio" name="style" value="feminine"> Feminine</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="preference-group" id="occasion-preferences" disabled>
+              <legend>Occasion</legend>
+              <div class="segmented-control">
+                <label><input type="radio" name="occasion" value="everyday" checked> Everyday</label>
+                <label><input type="radio" name="occasion" value="game-day"> Game day</label>
+                <label><input type="radio" name="occasion" value="birthday-party"> Birthday party</label>
+              </div>
+            </fieldset>
+          </section>
+
+          <div class="guidance-panel">
+            <section class="guidance-card" aria-labelledby="wear-title">
+              <h2 id="wear-title">Wear</h2>
+              <div class="guidance-content"><p>Your clothing recommendation will appear here.</p></div>
+            </section>
+            <section class="guidance-card" aria-labelledby="bring-title">
+              <h2 id="bring-title">Bring</h2>
+              <div class="guidance-content"><p>Time-specific preparation reminders will appear here.</p></div>
+            </section>
+            <section class="guidance-card" aria-labelledby="notices-title">
+              <h2 id="notices-title">Weather notices</h2>
+              <div class="guidance-content"><p>Forecast-based notices will appear here. These are not official alerts.</p></div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen reading-page" data-route="about" aria-labelledby="about-title" hidden>
+        <a class="back-link" href="#/">← Back to forecast</a>
+        <p class="eyebrow">About the project</p>
+        <h1 id="about-title">About Cloud Closet</h1>
+        <p class="lede">Cloud Closet turns a live weather forecast into clothing guidance for a day away from home.</p>
+
+        <section aria-labelledby="method-title">
+          <h2 id="method-title">How recommendations work</h2>
+          <p>The final recommendation method and temperature bands will be added as the forecast and recommendation systems are implemented.</p>
+        </section>
+        <section aria-labelledby="privacy-title">
+          <h2 id="privacy-title">Privacy and data</h2>
+          <p>Manual city and ZIP searches use location files stored with this app. Device location is requested only after you choose <strong>Use my location</strong>. After a location is selected, its representative coordinates are sent to Open-Meteo for a fresh forecast. Cloud Closet stores only your latest selected location on this device; search text, weather responses, and device-location history are not saved.</p>
+        </section>
+        <section aria-labelledby="credits-title">
+          <h2 id="credits-title">Sources and credits</h2>
+          <p>Created by Ella Gault. Forecast data is provided by <a href="https://open-meteo.com/" rel="external">Open-Meteo</a>. Location data comes from the US Census Bureau.</p>
+          <p>Character, clothing, accessory, weather, and reminder artwork was generated with ChatGPT under Ella Gault’s direction. Ella edited selected pieces and reviewed the complete SVG set for the final application. No third-party artwork is used.</p>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Cloud Closet is a forecast-based prototype, not an emergency-alert service.</p>
+    </footer>
+
+    <div class="visually-hidden" id="route-status" role="status" aria-live="polite"></div>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="longhorn-base" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 345.78 668.79">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #828569;
+        stroke: #713c29;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-1, .cls-3 {
+        stroke-width: 5px;
+      }
+
+      .cls-2 {
+        stroke: #4a622d;
+        stroke-width: 3px;
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-3 {
+        stroke: #f9e5cc;
+      }
+    </style>
+  </defs>
+  <g id="lightweight-tee">
+    <path class="cls-1" d="M112.21,284.78c11.49-8.23,23.35-10.1,35.61-5.61l22.97,14.59,22.97-14.59c13.78-3.74,25.65-1.87,35.61,5.61l30.55,28.88-20.05,73.54-4.66,1.44-1.24,37.51c-42.11,11.22-84.23,11.22-129.96,1.41l.76-39.72-3.2-1.44-21.28-74.8,31.94-26.81h-.02Z"/>
+    <path class="cls-3" d="M147.82,279.17c15.31,23.19,30.63,23.19,45.94,0"/>
+    <path class="cls-2" d="M119.1,417.17c34.46,6.73,68.91,6.73,103.37,0"/>
+  </g>
+</svg>

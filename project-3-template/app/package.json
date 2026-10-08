@@ -1,0 +1,11 @@
+{
+  "name": "cloud-closet",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:locations": "node ./scripts/build-location-data.js",
+    "start": "node ./scripts/server.js",
+    "test": "node --test"
+  }
+}
