@@ -194,7 +194,7 @@ Working inventory:
 
 | Asset group | Estimated count | Use and treatment |
 | --- | ---: | --- |
-| Base character | 1 | Main recommendation; original modular SVG |
+| Base character and head overlay | 2 | Main recommendation and cross-browser top layer; original modular SVG |
 | Tops | 12 | Outfit layers across categories, occasions, and style directions |
 | Bottoms | 8 | Outfit layers |
 | Dresses | 3 | Optional casual-dressy Birthday party variations |
@@ -204,9 +204,9 @@ Working inventory:
 | Weather icons | 9 | Date/hour forecast and condition summary |
 | Reminder icons | 6 | Rain, footwear, hydration, sun, wind, and layering |
 
-Total working estimate: approximately 58 unique SVG assets. Recoloring, including burnt orange and white Game day treatments, does not create separate assets. Each garment is tagged for compatible categories, occasions, style directions, layer position, and relevant conditions. The 108 outfit entries reference these reusable modules.
+Total production inventory: 59 unique SVG assets. Recoloring, including burnt orange and white Game day treatments, does not create separate assets. Each garment is tagged for compatible categories, occasions, style directions, layer position, and relevant conditions. The 108 outfit entries reference these reusable modules.
 
-ChatGPT-generated output was treated as a starting point rather than an automatic final asset. Ella reviewed the assets for visual consistency, usable SVG structure, clean geometry, alignment with the shared character anchor points, correct layer order, small-size legibility, and absence of copied trademarks or recognizable third-party artwork. She edited selected pieces before approving the complete 58-asset production inventory. The information screen discloses this workflow and does not attribute the Developer's decisions or review to AI.
+ChatGPT-generated output was treated as a starting point rather than an automatic final asset. Ella reviewed the assets for visual consistency, usable SVG structure, clean geometry, alignment with the shared character anchor points, correct layer order, small-size legibility, and absence of copied trademarks or recognizable third-party artwork. She edited selected pieces before approving the production inventory. The information screen discloses this workflow and does not attribute the Developer's decisions or review to AI.
 
 ## Out of scope
 
@@ -244,3 +244,4 @@ After implementation or testing, record requirement changes and the evidence tha
 
 After the Developer approves the specification, ask them to enter `save transcript`. When directed, save the complete conversation as `transcripts/spec-YYYY-MM-DD_HHMMSS.md`, label chat messages `Developer` and `Agent`, and confirm the saved path.
 - **October 8, 2026 — completed SVG inventory and provenance:** completed and integrated the 58 planned production SVG assets. ChatGPT generated the artwork under Ella Gault's direction; Ella edited selected pieces and reviewed the full set. No third-party artwork is used.
+- **October 8, 2026 — cross-browser head asset:** added one standalone head overlay with explicit SVG presentation attributes after Safari and Firefox rendered the previous external-fragment approach with black fallback fills. This brings the production inventory to 59 SVG assets without changing the approved visual design or outfit behavior.
