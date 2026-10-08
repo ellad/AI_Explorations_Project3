@@ -83,6 +83,11 @@
             <h2 id="outfit-title">Outfit</h2>
             <div class="character-artwork" id="outfit-illustration" role="img" aria-label="Character waiting for an outfit recommendation">
               <svg viewBox="0 0 512 768" aria-hidden="true" focusable="false">
+                <defs>
+                  <clipPath id="character-head-clip">
+                    <rect x="0" y="0" width="512" height="348"></rect>
+                  </clipPath>
+                </defs>
                 <image class="character-layer" data-layer="weather-prop" x="51.5" y="35.21" width="525" height="668.79" hidden></image>
                 <image class="character-layer" data-layer="base" href="./assets/longhorn-base-neutral-eyelashes.svg" x="0" y="0" width="512" height="768"></image>
                 <image class="character-layer" data-layer="bottom" x="86.5" y="35.21" width="345.78" height="668.79" hidden></image>
@@ -91,7 +96,7 @@
                 <image class="character-layer" data-layer="outerwear" x="86.5" y="35.21" width="345.78" height="668.79" hidden></image>
                 <image class="character-layer" data-layer="footwear" x="86.5" y="35.21" width="345.78" height="668.79" hidden></image>
                 <image class="character-layer" data-layer="neck-accessory" x="86.5" y="35.21" width="345.78" height="668.79" hidden></image>
-                <use class="character-layer" data-layer="head" href="./assets/dress-pants-preview.svg#head" transform="translate(86.5 35.21)"></use>
+                <image class="character-layer" data-layer="head" href="./assets/longhorn-base-neutral-eyelashes.svg" x="0" y="0" width="512" height="768" clip-path="url(#character-head-clip)"></image>
                 <image class="character-layer" data-layer="accessory" x="86.5" y="35.21" width="345.78" height="668.79" hidden></image>
                 <image class="character-layer" data-layer="accessory" x="86.5" y="35.21" width="345.78" height="668.79" hidden></image>
               </svg>

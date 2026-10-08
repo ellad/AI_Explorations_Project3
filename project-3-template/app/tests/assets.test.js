@@ -229,7 +229,8 @@ test("the shell follows the reference body-bottom-top-head layer order", async (
   assert.ok(footwearIndex < neckAccessoryIndex && neckAccessoryIndex < headIndex);
   assert.ok(headIndex < accessoryIndex);
   assert.equal(html.match(/data-layer="accessory"/g)?.length, 2);
-  assert.match(html, /href="\.\/assets\/dress-pants-preview\.svg#head" transform="translate\(86\.5 35\.21\)"/);
+  assert.match(html, /id="character-head-clip"/);
+  assert.match(html, /data-layer="head" href="\.\/assets\/longhorn-base-neutral-eyelashes\.svg"[^>]*clip-path="url\(#character-head-clip\)"/);
 });
 
 test("the renderer removes the hidden SVG attribute when clothing is available", async () => {
