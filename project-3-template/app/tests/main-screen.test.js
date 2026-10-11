@@ -10,6 +10,8 @@ test("main screen contains the complete approved interaction and guidance order"
     "location-query",
     "use-device-location",
     "hourly-strip",
+    "hourly-help",
+    "outfit-context",
     "outfit-illustration",
     "previous-outfit",
     "next-outfit",
@@ -22,6 +24,11 @@ test("main screen contains the complete approved interaction and guidance order"
   for (const id of requiredIds) assert.match(html, new RegExp(`id=["']${id}["']`), id);
   assert.match(html, /class="forecast-strip"[^>]*tabindex="0"/);
   assert.match(html, /id="hourly-strip"[^>]*tabindex="0"/);
+  assert.match(html, /id="outfit-title">Daily outfit</);
+  assert.match(html, /based on conditions from 8:00 a\.m\. through 8:00 p\.m\./);
+  assert.match(html, /Skip hourly details and go to daily advice/);
+  assert.match(html, /City:<\/strong> choose a state first/);
+  assert.match(html, /ZIP:<\/strong> leave State unchanged/);
   assert.ok(html.indexOf('id="wear-title"') < html.indexOf('id="bring-title"'));
   assert.ok(html.indexOf('id="bring-title"') < html.indexOf('id="notices-title"'));
 });
@@ -40,4 +47,8 @@ test("date and hourly rendering expose selection and local-hour behavior", async
   assert.match(source, /aria-current", "date/);
   assert.match(source, /findCurrentHourIndex\(day, currentTime\)/);
   assert.match(source, /strip\.scrollLeft = Math\.max/);
+  assert.match(source, /setAttribute\("role", "table"\)/);
+  assert.match(source, /setAttribute\("role", "columnheader"\)/);
+  assert.match(source, /setAttribute\("role", "rowheader"\)/);
+  assert.match(source, /setAttribute\("role", "cell"\)/);
 });

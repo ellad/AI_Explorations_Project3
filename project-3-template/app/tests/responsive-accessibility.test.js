@@ -41,6 +41,8 @@ test("responsive rules preserve the approved phone and laptop compositions", asy
   assert.match(css, /\.location-actions \.button[\s\S]*?width:\s*100%/);
   assert.match(css, /min-height:\s*2\.75rem/);
   assert.match(css, /\.segmented-control label:has\(input:focus-visible\)/);
+  assert.match(css, /\.reading-page[\s\S]*?line-height:\s*1\.7/);
+  assert.match(css, /\.about-nav ul[\s\S]*?grid-template-columns:/);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
 });
 

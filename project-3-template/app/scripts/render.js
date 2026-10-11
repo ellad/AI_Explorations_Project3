@@ -111,7 +111,9 @@ export function renderForecast(forecast, location, selectedDate, onDateSelected,
 export function renderHourlyForecast(day, currentTime, root = document) {
   const strip = root.querySelector("#hourly-strip");
   const dateLabel = root.querySelector("#hourly-date");
+  const outfitContext = root.querySelector("#outfit-context");
   dateLabel.textContent = `${formatDate(day.date)} · Times shown in the selected location's local time`;
+  outfitContext.textContent = `${formatDate(day.date)} daily outfit, based on conditions from 8:00 a.m. through 8:00 p.m.`;
   strip.setAttribute("aria-label", `Hourly forecast for ${formatDate(day.date)}`);
 
   if (!day.hours.length) {
@@ -124,13 +126,31 @@ export function renderHourlyForecast(day, currentTime, root = document) {
 
   const hours = document.createElement("div");
   hours.className = "hourly-hours";
+  hours.setAttribute("role", "table");
+  hours.setAttribute("aria-label", `Hourly conditions for ${formatDate(day.date)}`);
+  hours.setAttribute("aria-colcount", "4");
+  hours.setAttribute("aria-rowcount", String(day.hours.length + 1));
+  const header = document.createElement("div");
+  header.className = "visually-hidden";
+  header.setAttribute("role", "row");
+  for (const label of ["Time", "Condition", "Temperature", "Precipitation"]) {
+    const column = document.createElement("span");
+    column.setAttribute("role", "columnheader");
+    column.textContent = label;
+    header.append(column);
+  }
+  hours.append(header);
   for (const [index, hour] of day.hours.entries()) {
     const card = document.createElement("article");
     card.className = "hour-card";
+    card.setAttribute("role", "row");
+    card.setAttribute("aria-rowindex", String(index + 2));
     if (index === findCurrentHourIndex(day, currentTime)) card.dataset.current = "true";
     const time = document.createElement("h3");
+    time.setAttribute("role", "rowheader");
     time.textContent = formatHour(hour.localTime);
     const condition = document.createElement("p");
+    condition.setAttribute("role", "cell");
     condition.textContent = describeWeatherCode(hour.weatherCode);
     condition.className = "weather-condition";
     condition.prepend(createWeatherIcon({
@@ -140,9 +160,11 @@ export function renderHourlyForecast(day, currentTime, root = document) {
       windGust: hour.windGust,
     }, root));
     const temperature = document.createElement("p");
+    temperature.setAttribute("role", "cell");
     temperature.className = "hour-temperature";
     temperature.textContent = formatTemperature(hour.temperature);
     const precipitation = document.createElement("p");
+    precipitation.setAttribute("role", "cell");
     precipitation.className = "hour-precipitation";
     precipitation.textContent = Number.isFinite(hour.precipitationProbability)
       ? `${Math.round(hour.precipitationProbability)}% precipitation`
@@ -154,7 +176,7 @@ export function renderHourlyForecast(day, currentTime, root = document) {
 
   const initialIndex = Math.max(0, findCurrentHourIndex(day, currentTime));
   requestAnimationFrame(() => {
-    const initialCard = hours.children[initialIndex];
+    const initialCard = hours.querySelectorAll(".hour-card")[initialIndex];
     if (initialCard) strip.scrollLeft = Math.max(0, initialCard.offsetLeft - strip.clientWidth / 3);
   });
 }

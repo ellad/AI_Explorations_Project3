@@ -10,6 +10,10 @@ test("information screen contains every required visible disclosure", async () =
     assert.match(about, new RegExp(`id=["']${id}["']`), id);
   }
 
+  assert.match(about, /class="about-nav" aria-label="About page sections"/);
+  assert.match(about, /href="#method-title"/);
+  assert.match(about, /href="#privacy-title"/);
+
   for (const category of ["Hot", "Warm", "Temperate", "Cool", "Cold", "Freezing"]) {
     assert.match(about, new RegExp(`>${category}<`), category);
   }
@@ -30,6 +34,7 @@ test("information navigation uses the existing hash route without resetting app 
 
   assert.match(html, /class="back-link" href="#\/"/);
   assert.match(html, /href="#\/about"/);
+  assert.match(html, />How it works</);
   assert.equal((app.match(/createInitialState\(\)/g) ?? []).length, 1);
   assert.match(app, /window\.addEventListener\("hashchange", \(\) => updateRoute\(\{ moveFocus: true \}\)\)/);
 });

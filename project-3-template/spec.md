@@ -39,6 +39,8 @@ The main screen header shows the Cloud Closet name and an information icon on th
 
 On both main-screen layouts, the content order is location search, seven-day forecast strip, character and outfit controls, Wear guidance, Bring reminders, and Weather notices. Laptop composition uses two columns below the forecast strip. Phone composition becomes one vertical column, keeps the character near the top, and uses controls sized for one-handed operation.
 
+Following peer usability testing, the interface explicitly labels the outfit as one daily recommendation based on the 8:00 a.m.–8:00 p.m. forecast window. It gives Wear, Bring, and Weather notices stronger visual prominence, exposes a direct skip link from hourly details to the daily advice, and explains that Style and Occasion customize the outfit without changing the forecast. The location region distinguishes city/state search from ZIP-only search. The information screen uses a visible `How it works` entry point, section navigation, and more readable spacing without hiding required disclosures.
+
 ## Requirements
 
 ### 1. Live forecast and date selection
@@ -49,11 +51,15 @@ The main screen shows the selected US location, selected date, Fahrenheit units,
 
 An hourly strip for the selected date is horizontally scrollable and shows all available hours with local time, temperature, condition, and precipitation probability when available. For today, it initially scrolls to the current local hour but permits scrolling backward.
 
-**Acceptance checks:** A live request succeeds for representative continental US, Alaska, and Hawaii coordinates; the UI renders exactly seven selectable local dates; switching dates updates the character, text, icons, notices, and reminders together; today opens at the current local hour; and labels distinguish current from forecast data.
+The visual hourly cards expose table semantics to assistive technology, with named Time, Condition, Temperature, and Precipitation columns and one row per hour. This preserves the swipeable phone presentation while supporting structured screen-reader navigation.
+
+**Acceptance checks:** A live request succeeds for representative continental US, Alaska, and Hawaii coordinates; the UI renders exactly seven selectable local dates; switching dates updates the character, text, icons, notices, and reminders together; today opens at the current local hour; labels distinguish current from forecast data; and a screen reader can navigate the hourly values by table row and named column without changing the visual card layout.
 
 ### 2. Location selection and storage
 
 The location-search area appears above the seven-day forecast. It contains a state selector, a city-or-ZIP text field, and a clearly labeled `Use my location` action within the same control region. After a state is selected, typing a city lazy-loads that state's index and displays matching city suggestions as the User types. Suggestions expose city and state names, support pointer and keyboard selection, and do not select a location merely because focus moves through the list. An exact five-digit ZIP can be submitted without choosing a state. A street address is never required.
+
+The region is labeled `Choose or change location` for both first-time and returning Users. Supporting text states that city search requires a state and that a five-digit ZIP can be entered on its own.
 
 On a first visit with no saved location, the app shows a location-first empty state and waits for the User to search or activate `Use my location`. It does not assume Austin, request device permission automatically, or fetch weather before a location is selected. The empty state briefly explains that a location is needed to create the forecast-based outfit.
 
@@ -91,6 +97,8 @@ At laptop widths, the date strip spans the content area and the lower content us
 ### 5. Written recommendation, reminders, and notices
 
 Written guidance is organized under three explicit headings: `Wear`, `Bring`, and `Weather notices`. `Wear` provides a concise outfit recommendation naming useful garment types and layers. `Bring` contains practical reminders and identifies the relevant time or period. Triggered reminder types are rain protection, wet-weather footwear, hydration, sun protection, wind preparation, and adaptable layering. Each type has at least three wording variants. `Weather notices` remains visually and semantically separate from ordinary reminders. Empty sections are either omitted while preserving heading order or use concise neutral text; they never leave an unexplained blank card.
+
+The outfit heading and selected-date context state that this is one daily outfit derived from conditions across the recommendation window. A visible introduction and card treatment make Wear, Bring, and Weather notices identifiable as the actionable daily plan rather than additional raw forecast values.
 
 The character may visually carry or appear beside a relevant object, such as an umbrella, but every reminder also appears as text with an accessible icon treatment.
 
