@@ -60,9 +60,9 @@ Main risks are the approximately 58 original SVG assets and 108 validated outfit
 - [x] **Checkpoint 12 — Deployment verification:** Deploy only the app directory through GitHub Actions to a public GitHub Pages HTTPS URL. Verify direct navigation and refresh, production module and data paths, Open-Meteo requests, secure-context geolocation, and absence of credentials. Independently test the deployed version in current Chrome, Safari, Firefox, and Edge on a real phone and laptop.
 - [x] **Checkpoint 13 — Usability revision:** Prepare and conduct the three peer sessions described below against the working deployed app. Record observations separately from interpretations, identify and prioritize the strongest supported finding, choose at least one meaningful improvement, add it to this checklist, update `spec.md` if intended behavior changes, implement it, verify it locally and on the deployed site, and redeploy.
 - [x] **Usability-supported interface revision:** Clarify the daily recommendation and location paths; strengthen actionable Wear, Bring, and Weather notices; improve About discoverability and scanability; and add screen-reader table semantics to the existing hourly cards. Preserve the responsive card layout and recommendation behavior.
-- [ ] **Checkpoint 14 — Delivery audit:** Confirm all brief deliverables, required sources, privacy statements, artwork and AI-use credits, asset licenses, and transcript records. Audit the repository for credentials, confirm final automated and manual checks, and prepare the debrief.
-- [ ] Test and fix each checkpoint against the specification before starting the next.
-- [ ] Commit each meaningful working checkpoint.
+- [x] **Checkpoint 14 — Delivery audit:** Confirm all brief deliverables, required sources, privacy statements, artwork and AI-use credits, asset licenses, and transcript records. Audit the repository for credentials, confirm final automated and manual checks, and prepare the debrief.
+- [x] Test and fix each checkpoint against the specification before starting the next.
+- [x] Commit each meaningful working checkpoint.
 
 ### Verify and revise
 
@@ -79,17 +79,17 @@ Main risks are the approximately 58 original SVG assets and 108 validated outfit
 ### Deliver
 
 - [x] Confirm all brief deliverables, sources, privacy information, and asset credits
-- [ ] Save all chat transcripts
-- [ ] Complete the debrief
+- [x] Save all chat transcripts
+- [x] Complete the debrief
 
 ### Delivery audit
 
 - **Confirmed:** Approved research, specification, and implementation plan are present; research documents eight reference examples; all four approved phone/laptop drawings are linked and present; the working app, tests, GitHub Pages workflow, public HTTPS deployment, three usability-session records, prioritized findings, and implemented revision are present.
 - **Sources and disclosures:** The information screen identifies Open-Meteo and its CC BY 4.0 attribution and non-commercial limitation; Census Gazetteer and ZCTA sources and limitations; recommendation methods and evidence links; device-location, coordinate-sharing, provider-log, and local-storage behavior; creator credit; ChatGPT's actual assistance; and original-artwork provenance with no third-party artwork license required.
-- **Asset inventory:** Automated tests verify all catalog garments, nine weather icons, six reminder icons, shared artboards, and render layers. The asset directory contains the 59 production SVGs documented after the cross-browser head revision plus one non-production dress-pants preview SVG. Two tracked source ZIP backups remain in the app directory and should be retained or removed by Developer choice.
-- **Security and verification:** A final targeted credential scan found no API keys, access tokens, client secrets, passwords, private keys, or customer credentials. All 99 automated tests passed on October 11, 2026. Earlier Developer verification covers the deployed app in Chrome, Safari, Firefox, and Edge and phone/laptop layouts; the usability revision is deployed and its production HTML, JavaScript, and CSS were confirmed.
-- **Transcripts:** Research, specification, planning, SVG-production, implementation, and deployment transcripts are present. The current usability-revision/delivery-audit conversation has not yet been saved, and the debrief transcript cannot exist until the debrief is completed.
-- **Remaining before Checkpoint 14 can close:** obtain or add the required `debrief.md` instructions, complete the debrief, save this implementation transcript and the debrief transcript, decide whether tracked `.DS_Store` and SVG ZIP backup files should remain, perform the Developer's final deployed phone/laptop review of the usability revision, then commit and push the final documentation state.
+- **Asset inventory:** Automated tests verify all catalog garments, nine weather icons, six reminder icons, shared artboards, and render layers. The asset directory contains the 59 production SVGs documented after the cross-browser head revision plus one non-production dress-pants preview SVG. The Developer directed removal of the two redundant tracked SVG ZIP backups and the tracked `.DS_Store` files; repository ignore rules now prevent those files from returning.
+- **Security and verification:** A repeated final targeted credential scan found no API-key, access-token, client-secret, password-assignment, or private-key patterns. All 99 automated tests passed again on October 11, 2026. Earlier Developer verification covers the deployed app in Chrome, Safari, Firefox, and Edge and phone/laptop layouts; the usability revision is deployed and its production HTML, JavaScript, and CSS were confirmed.
+- **Transcripts:** Research, specification, planning, SVG-production, implementation, deployment, delivery-audit, and debrief transcripts are present. The debrief transcript records a completed 52-minute discussion saved on October 11, 2026.
+- **Final manual review:** The Developer confirmed the deployed usability revision was reviewed on both phone and laptop. Checkpoint 14 is complete.
 
 ## Usability testing
 
@@ -204,6 +204,7 @@ After all three sessions, group repeated or high-impact findings without erasing
 
 ## Revisions
 
+- **October 11, 2026 — Checkpoint 14 completed:** confirmed the brief deliverables, sources, disclosures, credits, licenses, transcript set, and completed debrief. Repeated the credential audit with no credential or private-key patterns found and reran all 99 automated tests successfully. The Developer confirmed the final deployed phone and laptop review, directed removal of tracked `.DS_Store` metadata and two redundant SVG ZIP backups, and saved the delivery-audit transcript.
 - **October 11, 2026 — Checkpoint 13 completed:** recorded three moderated peer sessions covering VoiceOver and touchscreen use on iPhone Safari. The strongest shared issue was the relationship between hourly data and one daily recommendation, followed by About-page findability and scanability. Updated the interface to label the daily forecast window, emphasize actionable Wear/Bring/notice content, clarify location-entry alternatives and preference effects, add a visible `How it works` entry point and About section navigation, increase information-page spacing, and expose the visual hourly cards with table semantics for screen readers. Added regression checks; all 99 automated tests pass. The Developer reviewed the local interface, commit `973089c` was pushed to `main`, and the deployed HTML, JavaScript, and CSS were verified at the public HTTPS site.
 - **October 3, 2026 — initial implementation plan approved:** organized the build into 14 dependency- and risk-ordered checkpoints, with location data and modular SVG work started early; one shared recommendation state driving all output; verification required at every checkpoint; deployment before peer testing; and a consistent usability-test protocol with three non-identifying session records. The Developer approved this plan during planning discussion.
 - **October 5, 2026 — Checkpoints 1 and 2 completed:** built and Developer-reviewed the dependency-free app shell, hash-routed main and information screens, shared responsive CSS, JavaScript module boundaries, Node test setup, local server, and GitHub Pages workflow. Generated 51 state/DC place files and ten first-digit ZIP shards from the pinned 2026 Census Gazetteer archives. Recorded source URLs and SHA-256 checksums, preserved ZIPs as strings, excluded Puerto Rico from prototype coverage, and verified required representative and failure cases. The generated JSON totals approximately 2.5 MB; the largest lazy-loaded file is under 118 KB. All nine automated tests pass.
