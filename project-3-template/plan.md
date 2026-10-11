@@ -66,11 +66,11 @@ Main risks are the approximately 58 original SVG assets and 108 validated outfit
 
 ### Verify and revise
 
-- [ ] Check every specification requirement
-- [ ] Test multiple locations, current and forecast dates, recommendation categories, outfit and reminder variations, and failure states
-- [ ] Verify that eligible outfit and reminder variations are selected independently rather than as fixed pairs
-- [ ] Verify that returning to a previously selected date shows the same variations
-- [ ] Test the deployed app, independently of the local version, on a real phone and a laptop, including both screens, accessibility, and one-handed controls
+- [x] Check every specification requirement
+- [x] Test multiple locations, current and forecast dates, recommendation categories, outfit and reminder variations, and failure states
+- [x] Verify that eligible outfit and reminder variations are selected independently rather than as fixed pairs
+- [x] Verify that returning to a previously selected date shows the same variations
+- [x] Test the deployed app, independently of the local version, on a real phone and a laptop, including both screens, accessibility, and one-handed controls
 - [x] Prepare the usability test below
 - [x] Test with three peers and record each session
 - [x] Add the chosen improvement to this checklist, and update `spec.md` if the intended result changes
